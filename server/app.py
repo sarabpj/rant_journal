@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 
-
 app = Flask(__name__)
 
 
@@ -37,13 +36,13 @@ class Journal(db.Model):
 
   id = db.Column(db.Integer, primary_key=True)
   text = db.Column(db.Text(), nullable=False)
-  timeCreated = db.Column()
+  time_created = db.Column(db.TIMESTAMP(timezone=False))
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
-  def __init__(self,text, user_id):
+  def __init__(self,text, user_id, time_created):
     self.text = text
     self.user_id = user_id
-
+    self.time_created
 
 @app.route('/')
 def hello():
